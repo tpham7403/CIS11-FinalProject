@@ -29,17 +29,17 @@ OUTLOOP   ADD     R4, R4, #-1 ; loop n - 1 times
             LD      R3, FILE    ; Set file pointer to beginning of file
 INNLOOP   LDR     R0, R3, #0  ; Get item at file pointer
             LDR     R1, R3, #1  ; Get next item
-            NOT     R2, R1      ; Negate ...
-            ADD     R2, R2, #1  ;        ... next item
-            ADD     R2, R0, R2  ; swap = item - next item
-            BRNZ    SWAPPED     ; Don't swap if in order (item <= next item)
-            STR     R1, R3, #0  ; Perform ...
-            STR     R0, R3, #1  ;         ... swap
+            NOT     R2, R1      ; Negate
+            ADD     R2, R2, #1  ; next item
+            ADD     R2, R0, R2  ;item - next item
+            BRNZ    SWAPPED     ;item <= next item
+            STR     R1, R3, #0  
+            STR     R0, R3, #1  ;swap
 SWAP     ADD     R3, R3, #1  ; Increment file pointer
             ADD     R5, R5, #-1 ; Decrement inner loop counter
-            BRP     INNERLOOP   ; End of inner loop
-            BRNZP   OUTERLOOP   ; End of outer loop
+            BRP     INNERLOOP   ; End of innloop
+            BRNZP   OUTERLOOP   ; End of outloop
 SORT      HALT
 
-FILE        .FILL   x3500       ; File location
+FILE        .FILL   x3020       ; File location
             .END
