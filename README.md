@@ -12,7 +12,6 @@ The program reads a file with 5 values and goes through them, comparing 2 values
 
 ### Installing
 
-* How/where to download your program
 * Modifications will be needed for the numbers.asm file if you wish to change the values that are to be sorted.
 
 ### Contributors
