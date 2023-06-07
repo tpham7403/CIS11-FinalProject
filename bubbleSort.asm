@@ -1,13 +1,4 @@
-; Implementing bubble sort algorithm
-;   R0  File item
-;   R1  File item
-;   R2  Work variable
-;   R3  File pointer
-;   R4  Outer loop counter
-;   R5  Inner loop counter
-
-
-            .ORIG   x3000
+.ORIG   x3000
 
 ; Count the number of items to be sorted and store the value in R7
 
