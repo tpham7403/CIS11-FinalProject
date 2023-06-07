@@ -21,7 +21,6 @@ COUNT       LDR     R0, R3, #0  ; next file item into R0
 ENDCOUNT   ADD     R4, R2, #0  ; Store total items in R4 (outer loop count)
             BRZ     SORTED      ; Empty file
 
-; Do the bubble sort
 
 OUTLOOP   ADD     R4, R4, #-1 ; loop n - 1 times
             BRNZ    SORTED      ; Looping complete, exit
