@@ -5,16 +5,16 @@
             AND     R2, R2, #0  ;  R2 <- 0 
             LD      R3, FILE    ; file pointer into R3
 COUNT       LDR     R0, R3, #0  ; next file item into R0
-            BRZ     END_COUNT   ; Loop until file item is 0
+            BRZ     ENDCOUNT   ; Loop until file item is 0
             ADD     R3, R3, #1  ; Increment file pointer
             ADD     R2, R2, #1  ; Increment counter
             BRNZP   COUNT       ; Counter loop
 ENDCOUNT   ADD     R4, R2, #0  ; Store total items in R4 (outer loop count)
-            BRZ     SORTED      ; Empty file
+            BRZ     SORT      ; Empty file
 
 
 OUTLOOP   ADD     R4, R4, #-1 ; loop n - 1 times
-            BRNZ    SORTED      ; Looping complete, exit
+            BRNZ    SORT      ; Looping complete, exit
             ADD     R5, R4, #0  ; Initialize inner loop counter to outer
             LD      R3, FILE    ; Set file pointer to beginning of file
 INNLOOP   LDR     R0, R3, #0  ; Get item at file pointer
@@ -22,13 +22,13 @@ INNLOOP   LDR     R0, R3, #0  ; Get item at file pointer
             NOT     R2, R1      ; Negate
             ADD     R2, R2, #1  ; next item
             ADD     R2, R0, R2  ;item - next item
-            BRNZ    SWAPPED     ;item <= next item
+            BRNZ    SWAP     ;item <= next item
             STR     R1, R3, #0  
             STR     R0, R3, #1  ;swap
 SWAP     ADD     R3, R3, #1  ; Increment file pointer
             ADD     R5, R5, #-1 ; Decrement inner loop counter
-            BRP     INNERLOOP   ; End of innloop
-            BRNZP   OUTERLOOP   ; End of outloop
+            BRP     INNLOOP   ; End of innloop
+            BRNZP   OUTLOOP   ; End of outloop
 SORT      HALT
 
 FILE        .FILL   x3020       ; File location
